@@ -1,5 +1,7 @@
-### set up nginx to read a local cert for https://dev.udacity.com
+### Develop Coco-web over SSL
+With the addition of student workspaces, any coco-web page using this service will not render unless it is served over SSL. Therefore there is a bit more work required to setup the dev environment.
 
+#### set up nginx to read a local cert for https://dev.udacity.com
 ```sh
 brew install nginx
       # OSX ships with outdated version of nginx
@@ -31,3 +33,9 @@ sudo nginx -s reload
     # added reference to include mime.types to fix this note in dev tools
     # Resource interpreted as Stylesheet but transferred with MIME type text/html
 ```
+
+Also you will need to change the webpack.config in ureact-app
+
+depending on your needs: for all three services developed locally you will need to change the dev config.
+
+More often if you are developing in ENV=staging, then you can more easily just prevent the webpack.config from overriding the cdn property...
