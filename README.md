@@ -22,10 +22,17 @@ cat *
 cat /etc/hosts
    # verify you are redirecting for every server block in nginx.conf
    # 127.0.0.1  cc.udacity.com 		      # classroom-content
-   # 127.0.0.1  workspace.udacity.com 	# web-terminal
+   # 127.0.0.1  dev.udacity.com       	# web-terminal
    # 127.0.0.1  web.udacity.com 	      # classroom-web
 sudo nginx -s reload
     # to apply changes to nginx.conf, such as adding new location blocks
     # added reference to include mime.types to fix this note in dev tools
     # Resource interpreted as Stylesheet but transferred with MIME type text/html
 ```
+
+
+# this works
+openssl req -x509 -extensions v3_req -nodes -days 3650 -newkey rsa:2048 -keyout nginx.key -out nginx.crt  -subj "/C=US/ST=CA/L=San Fransisco/O=Udacity/OU=Workspaces/CN=udacity.com" -config "./openssl.cnf"
+
+# after writing verify the nginx cert just written with
+openssl x509 -text -noout -in ./nginx.crt
